@@ -1,9 +1,0 @@
-{
-  "__merge" : [],
-  "objectName" : "aquapodseed",
-  "rarity" : "Uncommon",
-  "orientations" : [],
-  "scripts" : [
-	"/objects/farmables/gardenbotfarmable.lua"
-  ]
-}

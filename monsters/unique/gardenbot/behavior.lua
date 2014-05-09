@@ -19,7 +19,8 @@ function init(args)
   
   self.inv = inventoryManager.create()
 
-  self.ignore = {beakseed = true, talonseed = true}  
+  self.ignore = {beakseed = true, talonseed = true}
+  storage.seedMemory = {{}, {}, {}}
   local harvest = entity.configParameter("gardenSettings.gatherables")
   if harvest ~= nil then
     self.harvest = {}
@@ -60,11 +61,9 @@ function move(direction)
   end
 end
 
-function canReachTarget(target, ignoreLOS, reachOffset)
+function canReachTarget(target, ignoreLOS)
   local position = nil
   local collision = false
-  local offset = 1
-  if reachOffset ~= nil then offset = reachOffset end
   if type(target) == "number" then
     position = world.entityPosition(target)
     collision = not entity.entityInSight(target)
@@ -79,12 +78,12 @@ function canReachTarget(target, ignoreLOS, reachOffset)
   local max = nil
   --Target to the left
   if ep[1] > position[1] then
-    min = {position[1]+0.5, ep[2] - fovHeight/2}
-    max = {ep[1]-1, ep[2] + fovHeight / 2}
+    min = {position[1]+1.1, ep[2] - fovHeight/2}
+    max = {ep[1]-1.1, ep[2] + fovHeight / 2}
   --Target to the right
   else
-    min = {ep[1]+0.5, ep[2] - fovHeight/2}
-    max = {position[1]-offset, ep[2] + fovHeight / 2}
+    min = {ep[1]+1.1, ep[2] - fovHeight/2}
+    max = {position[1]-1.1, ep[2] + fovHeight / 2}
   end
 
   local oIds = world.objectQuery(min, max, { callScript = "entity.configParameter", callScriptArgs = {"category"}, callScriptResult = "gardenfence" })
@@ -297,7 +296,7 @@ function gatherState.update(dt, stateData)
   local position = entity.position()
   local toTarget = world.distance(stateData.targetPosition, position)
   local distance = world.magnitude(toTarget)
-  if distance < entity.configParameter("gardenSettings.interactRange") then
+  if distance <= entity.configParameter("gardenSettings.interactRange") then
     entity.setAnimationState("movement", "mod")
     local r = world.takeItemDrop(stateData.targetId, entity.id())
     if r ~= nil then
@@ -328,8 +327,14 @@ function gatherState.findTargetPosition(position)
 	local match = string.match(n, "%a+seed%a*")
 
     if match ~= nil or self.harvest[n] == true or world.itemType(n) == "consumable" then
-	  if canReachTarget(oId, false, entity.configParameter("gardenSettings.interactRange")) then
-        return { targetId = oId, targetPosition = world.entityPosition(oId) }
+      local oPos = world.entityPosition(oId)
+      if oPos[1] < position[1] then
+        oPos[1] = oPos[1] + entity.configParameter("gardenSettings.interactRange")
+      else
+        oPos[1] = oPos[1] - entity.configParameter("gardenSettings.interactRange")
+      end
+	  if canReachTarget(oPos) then
+        return { targetId = oId, targetPosition = oPos }
 	  end
     end
   end
@@ -375,8 +380,10 @@ function plantState.update(dt, stateData)
       if item == nil then
         seed = nil
       elseif seed ~= nil then
+        --TODO fail check to add to ignored seeds
         if world.placeObject(seed, stateData.targetPosition) then
           if oId == nil then self.inv.remove({name = seed, count = 1}) end
+          plantState.addToMemory(seed, stateData.targetPosition)
         else
           self.inv.add(item)
         end
@@ -408,19 +415,40 @@ function plantState.findTargetPosition(position)
       --local p2 = vec2.add(targetPosition, {0, 1})
       --local objects = world.objectQuery(p1, p2)
       --local objects = world.objectQuery(targetPosition, 0.5)
-      --if type(next(objects)) ~= "number" and canReachTarget(targetPosition) then
+      if canReachTarget(targetPosition) then
         local seed = plantState.getSeedName()
         if seed ~= nil then
-          local d = 2
-          if self.compact[seed] ~= nil then d = 1 end
+          --TODO seedMemory for plot size, default 2
+          local d = plantState.plotSize(seed)
+          --if self.compact[seed] ~= nil then d = 1 end
           if world.placeObject("gardenbotplot" .. d, targetPosition) then
             return { position = targetPosition, seed = seed}
           end
         end
-      --end
+      end
     end
   end
+  --TODO if seed is 2 plot, and fails, then try looking for a 1 plot seed and try again
   return nil
+end
+
+function plantState.plotSize(name)
+  for i,memory in ipairs(storage.seedMemory) do
+    if memory[name] then return i end
+  end
+  return 2
+end
+
+function plantState.addToMemory(name, pos)
+  for i,memory in ipairs(storage.seedMemory) do
+    if memory[name] then return nil end
+  end
+  local seedIds = world.objectQuery(pos, 0, {name = name})
+  if seedIds[1] then
+    local bounds = world.callScriptedEntity(seedIds[1], "entity.boundBox")
+    local plot = (bounds[3] - bounds[1]) - 2
+    storage.seedMemory[plot][name] = true
+  end
 end
 
 function plantState.getSeedName(name)
@@ -436,7 +464,9 @@ function plantState.getSeedName(name)
   local max = vec2.add({distance, fovHeight/2}, position)
   local objectIds = world.objectQuery(min, max, { callScript = "entity.configParameter", callScriptArgs = {"category"}, callScriptResult = "storage" })
   for _,oId in ipairs(objectIds) do
-    seed = self.inv.matchInContainer(oId, {name = search, ignore = self.ignore})
+    if canReachTarget(oId) then
+      seed = self.inv.matchInContainer(oId, {name = search, ignore = self.ignore})
+    end
     if seed ~= nil then return seed,oId end
   end
   return nil

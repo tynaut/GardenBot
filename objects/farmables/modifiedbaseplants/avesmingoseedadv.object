@@ -1,9 +1,0 @@
-{
-  "__merge" : [],
-  "objectName" : "avesmingoseedadv",
-  "rarity" : "Common",
-  "orientations" : [],
-  "scripts" : [
-	"/objects/farmables/gardenbotfarmable.lua"
-  ]
-}

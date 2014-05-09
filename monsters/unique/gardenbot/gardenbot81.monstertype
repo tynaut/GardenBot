@@ -35,7 +35,7 @@
       "fovHeight" : 2,
       "gatherables" : [ 
         "wheat", "plantfibre", "sugar", "bambooshoot", "deathblossom", "hops", "ignuschili",
-        "silk", "ff_resin", "oonfortaglobule", "shockshroom", "hay", "bm_cotton",
+        "silk", "ff_resin", "oonfortaglobule", "shockshroom", "hay", "bm_cotton", "soybean",
         "aegisaltore", "ceruliumore", "coalore", "copperore", "diamondore", "goldore",
         "ironore", "platinumore", "plutoniumore", "rubiumore", "silverore", "solariumore",
         "titaniumore", "uraniumore", "money"

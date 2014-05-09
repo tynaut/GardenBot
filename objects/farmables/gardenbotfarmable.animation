@@ -4,42 +4,24 @@
       "growingState" : {
         "default" : "0",
         "states" : {
-          "<stage>" : {
-            "frames" : 1,
-            "frameProperties" : {
-              "stage" : [ "<stage>" ]
-            }
-          },
           "0" : {
-            "frames" : 1,
-            "frameProperties" : {
-              "stage" : [ "0" ]
-            }
+            "frames" : 1
           },
           "1" : {
-            "frames" : 1,
-            "frameProperties" : {
-              "stage" : [ "1" ]
-            }
+            "frames" : 1
           },
           "2" : {
-            "frames" : 1,
-            "frameProperties" : {
-              "stage" : [ "2" ]
-            }
+            "frames" : 1
           },
           "3" : {
-            "frames" : 1,
-            "frameProperties" : {
-              "stage" : [ "3" ]
-            }
+            "frames" : 1
           }
         }
       }
     },
 
     "parts" : {
-      "seed" : {
+      "plant" : {
         "properties" : {
           "centered" : false
         },

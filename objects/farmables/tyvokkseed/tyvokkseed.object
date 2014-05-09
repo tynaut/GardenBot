@@ -1,9 +1,0 @@
-{
-  "__merge" : [],
-  "objectName" : "tyvokkseed",
-  "rarity" : "Legendary",
-  "orientations" : [],
-  "scripts" : [
-	"/objects/farmables/gardenbotfarmable.lua"
-  ]
-}

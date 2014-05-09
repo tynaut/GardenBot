@@ -20,7 +20,7 @@
   "orientations" : [
     {
       "dualImage" : "gbotfence3.png:<color>.<frame>",
-      "imagePosition" : [0, 0],
+      "imagePosition" : [-6, 0],
       "frames" : 1,
       "animationCycle" : 1,
 

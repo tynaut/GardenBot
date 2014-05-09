@@ -1,9 +1,0 @@
-{
-  "__merge" : [],
-  "objectName" : "caprioleplantseed",
-  "rarity" : "Uncommon",
-  "orientations" : [],
-  "scripts" : [
-	"/objects/farmables/gardenbotfarmable.lua"
-  ]
-}

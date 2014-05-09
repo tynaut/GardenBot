@@ -1,9 +1,0 @@
-{
-  "__merge" : [],
-  "objectName" : "floralytplantseed",
-  "rarity" : "Legendary",
-  "orientations" : [],
-  "scripts" : [
-	"/objects/farmables/gardenbotfarmable.lua"
-  ]
-}

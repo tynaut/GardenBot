@@ -1,9 +1,0 @@
-{
-  "__merge" : [],
-  "objectName" : "eggshootseedadv",
-  "rarity" : "Common",
-  "orientations" : [],
-  "scripts" : [
-	"/objects/farmables/gardenbotfarmable.lua"
-  ]
-}

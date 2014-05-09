@@ -1,9 +1,0 @@
-{
-  "__merge" : [],
-  "objectName" : "deathblossomseed",
-  "rarity" : "Rare",
-  "orientations" : [],
-  "scripts" : [
-	"/objects/farmables/gardenbotfarmable.lua"
-  ]
-}
