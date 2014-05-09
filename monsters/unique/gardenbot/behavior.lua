@@ -58,17 +58,21 @@ function move(direction)
 end
 
 function canReachTarget(target, ignoreLOS)
+  local debug = false
   local position = nil
   local collision = false
+  if entity.type() == "gardenbotv80g" then debug = true end
   if type(target) == "number" then
     position = world.entityPosition(target)
-    collision = not entity.entityInSight(target)
+    --collision = not entity.entityInSight(target)
   elseif type(target) == "table" then
     position = target
-    collision = world.lineCollision(entity.position(), position)
+    --collision = world.lineCollision(entity.position(), position)
   end
   if position == nil then return nil end
   local ep = entity.position()
+  local blocks = world.collisionBlocksAlongLine(ep, position, true, 1)
+  collision = blocks[1] ~= nil
   local fovHeight = entity.configParameter("gardenSettings.fovHeight")
   local min = nil
   local max = nil

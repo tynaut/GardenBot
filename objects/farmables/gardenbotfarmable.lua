@@ -1,11 +1,10 @@
 
 if init == nil then
     function init(virtual)
-        if not virtual then            
+        if not virtual then
+            storage.startTime = world.time()
             if storage.stage == nil then advance() end
-            --if storage.stage and storage.growth and storage.duration then
-            --    world.logInfo("GardenBot Plant : Stage " .. storage.stage .. "(" .. storage.growth .. "/" .. storage.duration .. ")")
-            --end
+            --world.logInfo("GardenBot Plant : Stage " .. tostring(storage.stage) .. "(" .. tostring(storage.growth) .. "/" .. tostring(storage.duration) .. ")")
         else
             storage.stage = nil
             storage.growth = nil
@@ -15,7 +14,12 @@ if init == nil then
   
     function main()
         if storage.duration ~= nil then
-            storage.growth = storage.growth + entity.dt()
+            local currentTime = world.time()
+            local d = currentTime - storage.startTime
+            if d > 0 then
+                storage.growth = storage.growth + d
+                storage.startTime = currentTime
+            end
             if storage.growth > storage.duration then
                 advance()
             end
@@ -51,9 +55,9 @@ if init == nil then
         --    entity.setAnimationState("growingState", stage)
         --end
         
-        if world.entityName(entity.id()) then
-            world.logInfo("GardenBot Plant (" .. world.entityName(entity.id()) ..") : Stage " .. stage)
-        end
+        --if world.entityName(entity.id()) then
+        --    world.logInfo("GardenBot Plant (" .. world.entityName(entity.id()) ..") : Stage " .. stage)
+        --end
     end
   
     function doHarvest()
