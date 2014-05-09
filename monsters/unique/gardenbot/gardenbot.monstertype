@@ -44,7 +44,7 @@
       "fovHeight" : 2,
       "seed" : [ "seed" ],
       "gatherables" : [ 
-        {"match" : "seed", "type" : "consumable"}, "wheat", "plantfibre", "sugar", "hay"
+        {"match" : "seed", "type" : "consumable"}, "wheat", "plantfibre", "sugar", "hay", "straw"
       ]
     },
 

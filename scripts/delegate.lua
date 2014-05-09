@@ -1,7 +1,7 @@
-if delegate == nil or delegate.v == nil or delegate.v < 1 then
+if delegate == nil or delegate.v == nil or delegate.v < 2 then
     --------------------------------------------------------------------------------
     delegate = {
-        v = 1,
+        v = 2,
         delegates = {},
         callbacks = {}
     }
@@ -10,33 +10,43 @@ if delegate == nil or delegate.v == nil or delegate.v < 1 then
     --------------------------------------------------------------------------------
     delegate.init = init
     function init(args)
-        local result = delegate.triggerAll("init")
+        local result = delegate.triggerAll("preInit", args)
+        if result == nil then result = delegate.triggerAll("init", args) end
         if result == nil and delegate.init ~= nil then delegate.init(args) end
+        if result == nil then delegate.triggerAll("postInit", args) end
     end
     --------------------------------------------------------------------------------
     delegate.main = main
     function main()
-        if delegate.tick ~= nil then delegate.tick() end
-        local result = delegate.triggerAll("main")
+        local result = delegate.triggerAll("preMain")
+        if result == nil then result = delegate.triggerAll("main") end
         if result == nil and delegate.main ~= nil then delegate.main() end
+        if delegate.tick ~= nil then delegate.tick() end
+        if result == nil then result = delegate.triggerAll("postMain") end
     end
     --------------------------------------------------------------------------------
     delegate.die = die
     function die()
-        local result = delegate.triggerAll("die")
+        local result = delegate.triggerAll("preDie")
+        if result == nil then result = delegate.triggerAll("die") end
         if result == nil and delegate.die ~= nil then delegate.die() end
+        if result == nil then result = delegate.triggerAll("postDie") end
     end
     --------------------------------------------------------------------------------
     delegate.damage = damage
     function damage(args)
-        local result = delegate.triggerAll("damage", args)
+        local result = delegate.triggerAll("preDamage", args)
+        if result == nil then result = delegate.triggerAll("damage", args) end
         if result == nil and delegate.damage ~= nil then delegate.damage(args) end
+        if result == nil then result = delegate.triggerAll("postDamage", args) end
     end
     --------------------------------------------------------------------------------
     delegate.interact = interact
     function interact(args)
-        local result = delegate.triggerAll("interact", args)
+        local result = delegate.triggerAll("preInteract", args)
+        if result == nil then result = delegate.triggerAll("interact", args) end
         if result == nil and delegate.interact ~= nil then delegate.interact(args) end
+        if result == nil then result = delegate.triggerAll("postInteract", args) end
     end
     --------------------------------------------------------------------------------
     -- delegate functions

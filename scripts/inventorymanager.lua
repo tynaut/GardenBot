@@ -188,7 +188,7 @@ if inventoryManager == nil or inventoryManager.v == nil or inventoryManager.v < 
             end
           end
         end
-        return fitCount > 0, index
+        return fitCount and fitCount > 0, index
       end
       
       function self.putInContainer(container, args)

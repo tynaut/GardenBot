@@ -2,7 +2,10 @@
 if init == nil then
     function init(virtual)
         if not virtual then
-            storage.startTime = world.time()
+            if storage.startTime ~= nil and storage.growth ~= nil then
+              storage.growth = storage.growth + (os.time() - storage.startTime)
+            end
+            storage.startTime = os.time()
             if storage.stage == nil then advance() end
             --world.logInfo("GardenBot Plant : Stage " .. tostring(storage.stage) .. "(" .. tostring(storage.growth) .. "/" .. tostring(storage.duration) .. ")")
         else
@@ -14,7 +17,7 @@ if init == nil then
   
     function main()
         if storage.duration ~= nil then
-            local currentTime = world.time()
+            local currentTime = os.time()
             local d = currentTime - storage.startTime
             if d > 0 then
                 storage.growth = storage.growth + d
@@ -31,7 +34,11 @@ if init == nil then
         local alts = entity.configParameter("stageAlts")
         local stage = storage.stage
         local alt = "0"
-        storage.growth = 0
+        if storage.duration then
+          storage.growth = storage.growth - storage.duration 
+        else
+          storage.growth = 0
+        end
         if stage == nil then
             stage = "0"
         else
