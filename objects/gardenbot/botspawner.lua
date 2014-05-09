@@ -16,6 +16,7 @@ function onInteraction(args)
 	parameters.damageTeam = 0
     parameters.ownerUuid = args.sourceId
     parameters.level = 1
+    parameters.spawnPoint = {p[1], p[2] + 1}
     world.spawnMonster(type, {p[1], p[2] + 1}, parameters)
     entity.smash()
   end

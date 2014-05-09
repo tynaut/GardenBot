@@ -14,28 +14,37 @@
 
   "baseParameters" : {
     "scripts" : [
-      "/monsters/unique/gardenbot/behavior.lua",
+      "/scripts/delegate.lua",
+      "/monsters/unique/gardenbot/gardenbot.lua",
+      "/monsters/unique/gardenbot/simplebehavior.lua",
       "/scripts/sensors.lua",
       "/scripts/stateMachine.lua",
       "/scripts/util.lua",
       "/scripts/vec2.lua",
       "/scripts/inventoryManager.lua",
-      "/scripts/helper.lua"
+      "/scripts/helper.lua",
+      
+      "/monsters/unique/gardenbot/plantState.lua",
+      "/monsters/unique/gardenbot/harvestState.lua",
+      "/monsters/unique/gardenbot/gatherState.lua",
+      "/monsters/unique/gardenbot/depositState.lua"
     ],
 
     "scriptDelta" : 10,
     "gardenSettings" : {
       "interactRange" : 1.5,
       "searchDistance" : 10.0,
+      "plantDistance" : 8.0,
       "cooldown" : 15.0,
+      "locateTime" : [2.0, 4.0],
       "harvestTime" : [0.5, 1.0],
       "plantTime" : [1.0, 2.0],
-      "depositTime" : [0.5, 2.0],
-      "searchType" : "line",
+      "depositTime" : [0.5, 1.0],
+      "searchType" : "linearfarm",
       "fovHeight" : 2,
       "seed" : [ "seed" ],
       "gatherables" : [ 
-        "wheat", "plantfibre", "sugar", "hay",
+        {"match" : "seed", "type" : "consumable"}, "wheat", "plantfibre", "sugar", "hay",
         "aegisaltore", "ceruliumore", "coalore", "copperore", "diamondore", "goldore",
         "ironore", "platinumore", "plutoniumore", "rubiumore", "silverore", "solariumore",
         "titaniumore", "uraniumore", "money"

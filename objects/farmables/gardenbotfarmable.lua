@@ -45,7 +45,7 @@ if init == nil then
         end
 
         if growing[stage] and growing[stage].duration then
-            storage.duration = math.random(growing[stage].duration[1],growing[stage].duration[2])
+            storage.duration = math.random(growing[stage].duration[1],growing[stage].duration[2]) + 5
         else
             storage.duration = nil
         end
@@ -57,6 +57,7 @@ if init == nil then
         
         --if world.entityName(entity.id()) then
         --    world.logInfo("GardenBot Plant (" .. world.entityName(entity.id()) ..") : Stage " .. stage)
+        --    world.logInfo(tostring(entity.level()))
         --end
     end
   

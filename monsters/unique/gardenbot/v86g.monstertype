@@ -1,0 +1,137 @@
+{
+  "type" : "gardenbotv86g",
+
+  "categories" : [ "gardenbotv86g" ],
+  "parts" : [ "arms", "body", "head" ],
+
+  "animation" : "v86g.animation",
+  "projectiles" : "/monsters/projectiles.config",
+  "colors" : "/monsters/colors.config",
+  "reversed" : true,
+  "persistent" : true,
+
+  "dropPools" : [ ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/ground/groundMonster.lua",
+      "/monsters/ground/meleeAttack.lua",
+      "/scripts/delegate.lua",
+      "/monsters/unique/gardenbot/gardenbot.lua",
+      "/scripts/stateMachine.lua",
+      "/scripts/util.lua",
+      "/scripts/vec2.lua",
+      "/scripts/inventoryManager.lua",
+      "/scripts/helper.lua",
+      
+      "/monsters/unique/gardenbot/plantState.lua",
+      "/monsters/unique/gardenbot/harvestState.lua",
+      "/monsters/unique/gardenbot/gatherState.lua",
+      "/monsters/unique/gardenbot/depositState.lua",
+      "/monsters/unique/gardenbot/returnState.lua",
+      "/monsters/unique/gardenbot/idleState.lua"
+    ],
+
+    "scriptDelta" : 10,
+    "gardenSettings" : {
+      "interactRange" : 3.0,
+      "searchDistance" : 40.0,
+      "wanderRange" : 40.0,
+      "plantDistance" : 8.0,
+      "cooldown" : 20.0,
+      "returnTime" : 12.0,
+      "locateTime" : [3.0, 6.0],
+      "harvestTime" : [1.0, 2.0],
+      "plantTime" : [0.5, 1.0],
+      "depositTime" : [0.2, 0.6],
+      "searchType" : "radiallumber",
+      "efficiency" : 1.0,
+      "fovHeight" : 4,
+      "seed" : [ "sapling" ],
+      "gatherables" : [ 
+        "fullwood1", "plantfibre", "sapling", "crystal", "icecrystal", "rainbowwood"
+      ]
+    },
+
+    "territoryDistance" : 0.1,
+    "territorialTargetRadius" : 0.1,
+    "minimalTargetRadius" : 0.1,
+    "targetSearchTime" : 0.1,
+    "targetHoldTime" : 0.1,
+
+    "idleSoundTime" : [45.0, 60.0],
+    "painSoundTimer" : 2.0,
+
+    "jumpTargetDistance" : 4,
+    "jumpTime" : [0.8, 1.4],
+
+    "knockoutTime" : 0.5,
+    "knockoutEffect" : "blink",
+    "deathParticles" : "deathPoof",
+    "deathNoise" : [ "/sfx/projectiles/bubble_pop.wav" ],
+
+    "exhaustionTimer" : 3.0,
+    "exhaustionTimeout" : 3.0,
+    "exhaustionDistanceLimit" : 1.0
+  },
+  "familyParameters" : [
+    [
+      {
+        "attackStartDistance" : 3.5,
+        "attackTime" : 0.75,
+        "attackCooldownTime" : 0.5,
+        "skills" : [ "meleeAttack" ]
+      }
+    ]
+  ],
+
+  "variantParameters" : [
+    [
+      [1.0, {
+          "scale" : 1.0,
+
+          "movementSettings" : {
+            "collisionPoly" : [ [-1, -2.6], [1, -2.6], [1, 0], [-1, 0] ],
+            "mass" : 0.6,
+            "walkSpeed" : 5,
+            "runSpeed" : 9,
+            "jumpSpeed" : 10,
+            "airFriction" : 1.0,
+            "airForce" : 50.0
+          },
+
+          "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],
+
+          "blockedSensors" : [ [1.5, -1.8], [1.5, -1.0], [1.5, -0.2], [1.5, 0.6] ],
+          "fallSensors" : [ [0.5, -2.5], [0.5, -3.5], [0.5, -4.5], [2.0, -2.5], [2.0, -3.5], [2.0, -4.5] ],
+
+          "touchDamage" : {
+            "poly" : [ [-1, -2.6], [1, -2.6], [1, 0], [-1, 0] ],
+            "damage" : 15,
+
+            "teamType" : "enemy",
+            "damageSourceKind" : "default",
+            "statusEffects" : [ ]
+          },
+
+          "inateStatusEffects" : [
+            {
+              "kind" : "Protection",
+              "amount" : 1.0
+            }
+          ],
+
+          "statusParameters" : {
+            "baseMaxHealth" : 16,
+            "baseMaxEnergy" : 100,
+            "bodyMaterialKind" : "robotic",
+            "damageConfig" : "/monsters/unique/gardenbot/damage.config"
+          },
+
+          "mouthOffset" : [0, 0],
+          "feetOffset" : [0, -21]
+        } ]
+    ]
+  ]
+}
+

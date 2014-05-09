@@ -9,15 +9,20 @@ function main()
   if self.inv and entity.id() then
     local qrt = math.floor(world.containerSize(entity.id()) / 4)
     local count = self.inv.emptyContainerSlots(entity.id())
+    local state = nil
     if count == nil then count = 0 end
     if count <= qrt then
-      entity.setAnimationState("harvestState", "full")
+      state = "full"
     elseif count <= 2 * qrt then
-      entity.setAnimationState("harvestState", "lots")
+      state = "lots"
     elseif count <= 3 * qrt then
-      entity.setAnimationState("harvestState", "little")
+      state = "little"
     else
-      entity.setAnimationState("harvestState", "empty")
+      state = "empty"
+    end
+    if self.harvestState ~= state then
+      self.harvestState = state
+      entity.setAnimationState("harvestState", state)
     end
   end
 end

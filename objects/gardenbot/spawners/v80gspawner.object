@@ -15,10 +15,10 @@
   "humanDescription" : "A deactivated garden bot.",
   "hylotlDescription" : "A deactivated garden bot.",
 
-  "inventoryIcon" : "botspawnericon.png",
+  "inventoryIcon" : "v80gspawnericon.png",
   "orientations" : [
     {
-      "dualImage" : "botspawner.png:<color>",
+      "dualImage" : "v80gspawner.png:<color>",
 
       "imagePosition" : [-8, 0],
       "frames" : 1,
