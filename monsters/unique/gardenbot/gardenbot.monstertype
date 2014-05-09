@@ -1,0 +1,108 @@
+{
+  "type" : "gardenbotv80g",
+
+  "categories" : [ "gardenbotv80g" ],
+  "parts" : [ "body" ],
+
+  "animation" : "gardenbot.animation",
+  "projectiles" : "/monsters/projectiles.config",
+  "colors" : "/monsters/colors.config",
+  "reversed" : true,
+  "persistent" : true,
+
+  "dropPools" : [ ],
+
+  "baseParameters" : {
+    "scripts" : [
+      "/monsters/unique/gardenbot/behavior.lua",
+      "/scripts/sensors.lua",
+      "/scripts/stateMachine.lua",
+      "/scripts/util.lua",
+      "/scripts/vec2.lua",
+      "/scripts/inventoryManager.lua",
+      "/scripts/helper.lua"
+    ],
+
+    "scriptDelta" : 5,
+    "gardenSettings" : {
+      "interactRange" : 1.5,
+      "searchDistance" : 15.0,
+      "cooldown" : 15.0,
+      "harvestTime" : [1.0, 2.0],
+      "plantTime" : [1.0, 3.0],
+      "depositTime" : [0.5, 1.5],
+      "searchType" : "line",
+      "fovHeight" : 2,
+      "gatherables" : [ 
+        "wheat", "plantfibre", "sugar", "bambooshoot", "deathblossom", "hops", "ignuschili",
+        "silk", "ff_resin", "oonfortaglobule", "shockshroom", "hay", "bm_cotton"
+      ]
+    },
+    
+    "compactPlot" : [
+        "beakseedseed", "boltbulbseed", "carrotseed", "currentcornseed", "eggshotseed",
+        "feathercrownseed", "kiwiseed", "potatoseed", "pussplumseed", "riceseed",
+        "beakseedseedadv", "boltbulbseedadv", "carrotseedadv", "currentcornseedadv", "eggshotseedadv",
+        "feathercrownseedadv", "kiwiseedadv", "potatoseedadv", "pussplumseedadv", "riceseedadv",
+        "talonseedseed"
+    ],
+
+    "metaBoundBox" : [-1.0, -0.65, 1.0, 0.65],
+    "scale" : 1.0,
+
+    "movementSettings" : {
+      "collisionPoly" : [ [-1.0, -0.65], [1.0, -0.65], [1.0, 0.65], [-1.0, 0.65] ],
+
+      "mass" : 0.2,
+      "walkSpeed" : 3,
+      "runSpeed" : 4,
+      "jumpSpeed" : 5,
+      "flySpeed" : 15,
+      "airFriction" : 0.25,
+      "airForce" : 50.0
+    },
+
+    "knockoutTime" : 1,
+    "knockoutEffect" : "blink",
+    "deathParticles" : "deathPoof",
+    "deathNoise" : [ ],
+    "turnHostileNoise" : [ ],
+
+    "touchDamage" : {
+      "poly" : [ [-1.0, -0.65], [1.0, -0.65], [1.0, 0.65], [-1.0, 0.65] ],
+      "damage" : 15,
+
+      "teamType" : "enemy",
+      "damageSourceKind" : "electroshock",
+      "statusEffects" : [ ]
+    },
+
+    "statusParameters" : {
+      "baseMaxHealth" : 10,
+      "bodyMaterialKind" : "robotic",
+      "damageConfig" : "/monsters/unique/gardenbot/damage.config"
+    },
+
+    "inateStatusEffects" : [
+      {
+        "kind" : "Protection",
+        "amount" : 0.1
+      }
+    ],
+    
+
+    "mouthOffset" : [0, 0],
+    "feetOffset" : [0, -8],
+
+    "collisionSensors" : [ [1.25, 0.0] ],
+
+    "nearGroundSensor" : [ [0.0, -1.0] ],
+    "midGroundSensor" : [ [0.0, -4.0] ],
+
+    "moveTimeRange" : [1, 2.5],
+
+    "attackTargetHoldTime" : 5.0,
+    "attackDistance" : 2.0,
+    "attackHoldTime" : 2.0
+  }
+}

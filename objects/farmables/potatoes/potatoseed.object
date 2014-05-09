@@ -1,0 +1,6 @@
+{
+  "__merge" : [],
+  "scripts" : [
+	"/objects/farmables/gardenbotfarmable.lua"
+  ]
+}

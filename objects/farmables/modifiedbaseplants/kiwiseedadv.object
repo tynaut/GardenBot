@@ -1,0 +1,9 @@
+{
+  "__merge" : [],
+  "objectName" : "kiwiseedadv",
+  "rarity" : "Common",
+  "orientations" : [],
+  "scripts" : [
+	"/objects/farmables/gardenbotfarmable.lua"
+  ]
+}

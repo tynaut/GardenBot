@@ -1,0 +1,11 @@
+{
+  "name" : "Garden Bot - Version 80G",
+  "version" : "Beta v. Enraged Koala",
+  "path" : ".",
+  "dependencies" : [],
+  "metadata" : {
+    "author" : "tynaut",
+    "description" : "The automated gardening bot.",
+    "version" : "0.7"
+  }
+}

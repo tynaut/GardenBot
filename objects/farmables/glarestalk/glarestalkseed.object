@@ -1,0 +1,9 @@
+{
+  "__merge" : [],
+  "objectName" : "glarestalkseed",
+  "rarity" : "Legendary",
+  "orientations" : [],
+  "scripts" : [
+	"/objects/farmables/gardenbotfarmable.lua"
+  ]
+}

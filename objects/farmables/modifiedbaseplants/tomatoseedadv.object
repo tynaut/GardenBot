@@ -1,0 +1,9 @@
+{
+  "__merge" : [],
+  "objectName" : "tomatoseedadv",
+  "rarity" : "Common",
+  "orientations" : [],
+  "scripts" : [
+	"/objects/farmables/gardenbotfarmable.lua"
+  ]
+}

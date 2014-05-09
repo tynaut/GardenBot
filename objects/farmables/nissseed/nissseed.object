@@ -1,0 +1,9 @@
+{
+  "__merge" : [],
+  "objectName" : "nissseed",
+  "rarity" : "Uncommon",
+  "orientations" : [],
+  "scripts" : [
+	"/objects/farmables/gardenbotfarmable.lua"
+  ]
+}

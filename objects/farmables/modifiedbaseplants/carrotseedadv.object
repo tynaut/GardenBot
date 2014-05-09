@@ -1,0 +1,9 @@
+{
+  "__merge" : [],
+  "objectName" : "carrotseedadv",
+  "rarity" : "Common",
+  "orientations" : [],
+  "scripts" : [
+	"/objects/farmables/gardenbotfarmable.lua"
+  ]
+}

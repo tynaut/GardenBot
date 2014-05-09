@@ -1,0 +1,9 @@
+{
+  "__merge" : [],
+  "objectName" : "porphisplantseed",
+  "rarity" : "Rare",
+  "orientations" : [],
+  "scripts" : [
+	"/objects/farmables/gardenbotfarmable.lua"
+  ]
+}
