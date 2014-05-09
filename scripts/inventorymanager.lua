@@ -18,15 +18,18 @@ function inventoryManager.create()
     return table.maxn(inv)
   end
   
-  function self.findMatch(name, ignore)
-    if type(name) ~= "string" then return nil end
+  function self.findMatch(name, ignore, value)
+    if value == nil then value = true end
+    if type(name) ~= "table" then name = {name} end
     if type(ignore) ~= "table" or ignore == nil then ignore = {} end
     local inv = storage.inventoryManager
     for i,v in ipairs(inv) do
-      if v.name ~= nil then
-        local match = string.match(v.name, name)
-        if match ~= nil and ignore[v.name] ~= true then
-          return v.name,i
+      for _,n in ipairs(name) do
+        if v.name ~= nil then
+          local match = string.match(v.name, n)
+          if match ~= nil and ignore[v.name] ~= value then
+            return v.name,i
+          end
         end
       end
     end
@@ -316,18 +319,21 @@ function inventoryManager.create()
     local name = nil
     local ignore = {}
     if type(args) == "string" then 
-      name = args 
+      name = args
     elseif type(args) == "table" then
       name = args.name
       if type(args.index) == "number" then index = args.index end
       if type(args.ignore) == "table" then ignore = args.ignore end
     end
+    if type(name) ~= "table" then name = {name} end
     for i = index,size,1 do
-      local item = world.containerItemAt(container, i)
-      if item ~= nil then
-        local match = string.match(item.name, name)
-        if match ~= nil and ignore[item.name] ~= true then
-          return item.name,i
+      for _,n in ipairs(name) do
+        local item = world.containerItemAt(container, i)
+        if item ~= nil then
+          local match = string.match(item.name, n)
+          if match ~= nil and ignore[item.name] ~= true then
+            return item.name,i
+          end
         end
       end
     end

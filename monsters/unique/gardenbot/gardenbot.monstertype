@@ -23,7 +23,7 @@
       "/scripts/helper.lua"
     ],
 
-    "scriptDelta" : 5,
+    "scriptDelta" : 10,
     "gardenSettings" : {
       "interactRange" : 1.5,
       "searchDistance" : 15.0,
@@ -33,9 +33,9 @@
       "depositTime" : [0.5, 1.5],
       "searchType" : "line",
       "fovHeight" : 2,
+      "seed" : [ "seed" ],
       "gatherables" : [ 
-        "wheat", "plantfibre", "sugar", "bambooshoot", "deathblossom", "hops", "ignuschili",
-        "silk", "ff_resin", "oonfortaglobule", "shockshroom", "hay", "bm_cotton", "soybean"
+        "wheat", "plantfibre", "sugar", "hay"
       ]
     },
 

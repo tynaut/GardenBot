@@ -1,7 +1,7 @@
 {
   "__merge" : [],
-    
   "scripts" : [
 	"/objects/farmables/gardenbotfarmable.lua"
-  ]
+  ],
+  "scriptDelta" : 50
 }

@@ -19,7 +19,7 @@ function init(args)
   
   self.inv = inventoryManager.create()
 
-  self.ignore = {beakseed = true, talonseed = true}
+  self.ignore = {beakseed = true, talonseed = true, seedpile = true}
   storage.seedMemory = {{}, {}, {}}
   local harvest = entity.configParameter("gardenSettings.gatherables")
   if harvest ~= nil then
@@ -38,6 +38,9 @@ end
 
 function damage(args)
   if entity.health() < 1 then
+    local spawner = nil
+    if entity.type() then spawner = entity.type() .. "spawner" end
+    if spawner ~= nil then self.inv.add({name = spawner, count = 1}) end
     self.inv.drop({all = true, position = entity.position()})
   end
   self.state.pickState(args.sourceId)
@@ -317,7 +320,7 @@ function gatherState.findTargetPosition(position)
   end
   for _,oId in pairs(objectIds) do
 	local n = world.entityName(oId)
-	local match = string.match(n, "%a+seed%a*")
+	local match = string.match(n, "seed")
 
     if match ~= nil or self.harvest[n] == true or world.itemType(n) == "consumable" then
       local oPos = world.entityPosition(oId)
@@ -445,7 +448,7 @@ end
 
 function plantState.getSeedName(name)
   local position = entity.position()
-  local search = "%a+seed%a*"
+  local search = entity.configParameter("gardenSettings.seed", "seed")
   if name ~= nil then search = name end
   local seed = self.inv.findMatch(search, self.ignore)
   if seed ~= nil then return seed,nil end
@@ -458,8 +461,8 @@ function plantState.getSeedName(name)
   for _,oId in ipairs(objectIds) do
     if canReachTarget(oId) then
       seed = self.inv.matchInContainer(oId, {name = search, ignore = self.ignore})
+      if seed ~= nil then return seed,oId end
     end
-    if seed ~= nil then return seed,oId end
   end
   return nil
 end
