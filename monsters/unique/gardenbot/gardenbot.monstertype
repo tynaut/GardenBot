@@ -22,7 +22,6 @@
       "/scripts/util.lua",
       "/scripts/vec2.lua",
       "/scripts/inventoryManager.lua",
-      "/scripts/helper.lua",
       
       "/monsters/unique/gardenbot/plantState.lua",
       "/monsters/unique/gardenbot/harvestState.lua",
@@ -36,15 +35,16 @@
       "searchDistance" : 15.0,
       "plantDistance" : 8.0,
       "cooldown" : 15.0,
-      "locateTime" : [1.0, 3.0],
+      "locateTime" : [2.0, 3.0],
       "harvestTime" : [1.0, 2.0],
-      "plantTime" : [1.0, 3.0],
+      "plantTime" : [1.0, 2.0],
       "depositTime" : [0.2, 0.5],
       "searchType" : "linearfarm",
       "fovHeight" : 2,
-      "seed" : [ "seed" ],
+      "seed" : [ "seed", "avaliplant", "soybean", "bm_bamboosprout", "mushroomspore" ],
       "gatherables" : [ 
-        {"match" : "seed", "type" : "consumable"}, "wheat", "plantfibre", "sugar", "hay", "straw"
+        {"seed" : "match", "consumable" : "type", "plant" : "match"}, "wheat", "plantfibre",
+        "sugar", "straw", "money", "soybean", "bm_bamboosprout", "mushroomspore"
       ]
     },
 

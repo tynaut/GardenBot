@@ -1,7 +1,7 @@
 {
-  "type" : "gardenbotv81g",
+  "type" : "gardenbotv82g",
 
-  "categories" : [ "gardenbotv81g" ],
+  "categories" : [ "gardenbotv82g" ],
   "parts" : [ "body" ],
 
   "animation" : "gardenbot.animation",
@@ -26,21 +26,21 @@
       "/monsters/unique/gardenbot/plantState.lua",
       "/monsters/unique/gardenbot/harvestState.lua",
       "/monsters/unique/gardenbot/gatherState.lua",
-      "/monsters/unique/gardenbot/depositState.lua"
+      "/monsters/unique/gardenbot/depositState.lua",
+      "/monsters/unique/gardenbot/grassState.lua"
     ],
 
     "scriptDelta" : 10,
     "gardenSettings" : {
       "interactRange" : 1.5,
-      "searchDistance" : 10.0,
+      "searchDistance" : 15.0,
       "plantDistance" : 8.0,
       "cooldown" : 15.0,
-      "locateTime" : [3.0, 4.0],
-      "harvestTime" : [0.2, 0.6],
-      "plantTime" : [0.4, 0.8],
-      "depositTime" : [0.5, 1.0],
+      "locateTime" : [2.0, 3.0],
+      "harvestTime" : [1.0, 1.8],
+      "plantTime" : [1.0, 1.8],
+      "depositTime" : [0.2, 0.5],
       "searchType" : "linearfarm",
-      "efficiency" : 1.0,
       "fovHeight" : 2,
       "seed" : [ "seed", "avaliplant", "soybean", "bm_bamboosprout", "mushroomspore" ],
       "gatherables" : [ 
@@ -55,9 +55,9 @@
     "movementSettings" : {
       "collisionPoly" : [ [-1.0, -0.65], [1.0, -0.65], [1.0, 0.65], [-1.0, 0.65] ],
 
-      "mass" : 1.0,
-      "walkSpeed" : 2,
-      "runSpeed" : 3,
+      "mass" : 0.2,
+      "walkSpeed" : 4,
+      "runSpeed" : 5,
       "jumpSpeed" : 5,
       "flySpeed" : 15,
       "airFriction" : 0.25,

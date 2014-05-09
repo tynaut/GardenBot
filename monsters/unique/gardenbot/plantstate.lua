@@ -46,7 +46,7 @@ function plantState.update(dt, stateData)
           if storage.failedMemory[fp] then
             storage.failedMemory[fp] = storage.failedMemory[fp] + 1
           else storage.failedMemory[fp] = 1 end
-          self.inv.add(seed)
+          if oId ~= nil then self.inv.add(seed) end
         end
         return true
       end

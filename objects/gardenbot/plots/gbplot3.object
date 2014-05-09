@@ -1,5 +1,5 @@
 {
-  "objectName" : "gardenbotplotS",
+  "objectName" : "gardenbotplot3",
   "rarity" : "Common",
   "price" : 1,
   "description" : "gardenbotplot",
@@ -23,12 +23,13 @@
   "inventoryIcon" : "ploticon.png",
   "orientations" : [
     {
-      "image" : "gbplotS.png:default.<frame>",
+      "image" : "gbplot3.png:default.<frame>",
       "imagePosition" : [0, 0],
       "frames" : 1,
       "animationCycle" : 0.5,
 
-      "spaces" : [ [0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [-1, 1], [2, 1] ],
+      "spaces" : [ [0, 0], [0, 1], [1, 0], [1, 1], [2, 0], [2, 1] ],
+      "requireTilledAnchors" : true,
       "anchors" : [ "bottom" ]
     }
   ]

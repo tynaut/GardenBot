@@ -1,6 +1,7 @@
 delegate.create("simplegardenbot")
 --------------------------------------------------------------------------------
 simplegardenbot = {}
+grassState = {}
 --------------------------------------------------------------------------------
 function simplegardenbot.init(args)
   self.sensors = sensors.create()
@@ -9,6 +10,7 @@ function simplegardenbot.init(args)
     "plantState",
     "harvestState",
     "depositState",
+    "grassState",
     "moveState",
     "attackState"
   })

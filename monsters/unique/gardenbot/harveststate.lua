@@ -49,7 +49,7 @@ function harvestState.farmUpdate(dt, stateData)
       stateData.located = true
       stateData.timer = entity.randomizeParameterRange("gardenSettings.harvestTime")
     elseif stateData.timer < 0 then
-      local result = world.callScriptedEntity(stateData.targetId, "doHarvest")
+      local result = harvestState.harvestFarmable(stateData.targetId)
     end
   else
     move(util.toDirection(toTarget[1]))
@@ -63,19 +63,16 @@ function harvestState.findFarmPosition(position)
   if string.find(self.searchType, '^linear') then
     local p1 = vec2.add({-self.searchDistance, 0}, position)
     local p2 = vec2.add({self.searchDistance, 0}, position)
-    --objectIds = world.objectLineQuery(p1, p2, { callScript = "entity.configParameter", callScriptArgs = {"category"}, callScriptResult = "farmable" })
-    --TODO use vanilla props for this
-    objectIds = world.objectLineQuery(p1, p2, { callScript = "canHarvest" })
+    objectIds = world.objectLineQuery(p1, p2, { callScript = "entity.configParameter", callScriptArgs = {"category"}, callScriptResult = "farmable" })
   elseif string.find(self.searchType, '^radial') then
-    --objectIds = world.objectQuery(position, self.searchDistance, { callScript = "entity.configParameter", callScriptArgs = {"category"}, callScriptResult = "farmable" })
-    objectIds = world.objectQuery(position, self.searchDistance, { callScript = "canHarvest" })
+    objectIds = world.objectQuery(position, self.searchDistance, { callScript = "entity.configParameter", callScriptArgs = {"category"}, callScriptResult = "farmable" })
   end
   if entity.configParameter("gardenSettings.efficiency") then
     table.sort(objectIds, distanceSort)
   end
   for _,oId in pairs(objectIds) do
     local oPosition = world.entityPosition(oId)
-    if canReachTarget(oId) then 
+    if canReachTarget(oId) and harvestState.canHarvest(oId) then
       return { targetId = oId, targetPosition = oPosition }
     end
   end
@@ -137,4 +134,42 @@ function harvestState.findLumberPosition(position)
   end
   
   return nil
+end
+--------------------------------------------------------------------------------
+function harvestState.canHarvest(oId)
+  local stage = nil
+  if world.farmableStage then stage = world.farmableStage(oId) end
+  local interactions = world.callScriptedEntity(oId, "entity.configParameter", "interactionTransition", nil)
+  if stage ~= nil and interactions[tostring(stage)] ~= nil then
+      return true
+  end
+  return false
+end
+--------------------------------------------------------------------------------
+function harvestState.harvestFarmable(oId)
+  local stage = "2"
+  if world.farmableStage then stage = world.farmableStage(oId) end
+  local drops = world.callScriptedEntity(oId, "entity.configParameter", "interactionTransition." .. tostring(stage) .. ".dropOptions", nil)
+  --world.callScriptedEntity(oId, "entity.randomizeParameter", "interactionTransition." .. stage .. ".dropOptions")
+    if drops then
+      local pos = world.entityPosition(oId)
+      local i = 2
+      local odds = drops[1]
+      while drops[i] do
+        if drops[i+1] == nil or math.random() < odds then
+          local j = 1
+          while drops[i][j] do
+            local name = drops[i][j].name
+            if self.harvest[string.lower(name)] == nil and world.itemType(name) == "generic" then
+              self.harvest[string.lower(name)] = true
+            end
+            world.spawnItem(name, {pos[1], pos[2] + 1}, drops[i][j].count)
+            j = j + 1
+          end
+          break
+        end
+        i = i + 1
+      end
+    end
+    world.callScriptedEntity(oId, "entity.break")
 end

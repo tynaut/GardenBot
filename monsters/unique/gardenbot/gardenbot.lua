@@ -20,8 +20,10 @@ function gardenbot.init(args)
     for _,v in ipairs(harvest) do
       if type(v) == "string" then self.harvest[string.lower(v)] = true end
       if type(v) == "table" then
-        if v.match then table.insert(self.harvestMatch, v.match) end
-        if v.type then self.harvestType[string.lower(v.type)] = true end
+        for h,t in pairs(v) do
+          if t == "match" then table.insert(self.harvestMatch, h) end
+          if t == "type" then self.harvestType[string.lower(h)] = true end
+        end
       end
     end
   end

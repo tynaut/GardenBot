@@ -38,7 +38,7 @@
     "/objects/gardenbot/bins/bin.lua",
     "/scripts/inventoryManager.lua"
   ],
-  "scriptDelta" : 100,
+  "containerCallback" : "binInventoryChange",
   "binFrames" : 3,
   
   "openSounds" : [ "/sfx/objects/woodenbox_open.wav" ],

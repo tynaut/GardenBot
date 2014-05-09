@@ -22,7 +22,6 @@
       "/scripts/util.lua",
       "/scripts/vec2.lua",
       "/scripts/inventoryManager.lua",
-      "/scripts/helper.lua",
       
       "/monsters/unique/gardenbot/plantState.lua",
       "/monsters/unique/gardenbot/harvestState.lua",
@@ -43,14 +42,15 @@
       "locateTime" : [6.0, 7.0],
       "harvestTime" : [1.0, 2.0],
       "plantTime" : [0.5, 1.0],
-      "depositTime" : [0.2, 0.6],
+      "depositTime" : [0.3, 0.6],
       "searchType" : "radiallumber",
       "efficiency" : 1.0,
       "fovHeight" : 4,
       "seed" : [ "sapling" ],
       "gatherables" : [ 
         "fullwood1", "plantfibre", "sapling", "crystal", "icecrystal", "rainbowwood", "cacti",
-        "oculemon", "fleshstrand", "giantflowerpetal", "ice", "shroom", "metallic"
+        "oculemon", "fleshstrand", "giantflowerpetal", "ice", "shroom", "metallic",
+        "coconut", "redapple", "peach", "pear"
       ]
     },
 
@@ -64,7 +64,7 @@
     "painSoundTimer" : 2.0,
 
     "jumpTargetDistance" : 4,
-    "jumpTime" : [0.8, 1.4],
+    "jumpTime" : [0.4, 0.7],
 
     "knockoutTime" : 0.5,
     "knockoutEffect" : "blink",
@@ -93,12 +93,10 @@
 
           "movementSettings" : {
             "collisionPoly" : [ [-1, -2.6], [1, -2.6], [1, 0], [-1, 0] ],
-            "mass" : 0.6,
-            "walkSpeed" : 5,
-            "runSpeed" : 9,
-            "jumpSpeed" : 10,
-            "airFriction" : 1.0,
-            "airForce" : 50.0
+            "mass" : 1,
+            "walkSpeed" : 4,
+            "runSpeed" : 7,
+            "jumpSpeed" : 4
           },
 
           "metaBoundBox" : [-2.5, -2.5, 2.5, 2.5],

@@ -1,4 +1,4 @@
-function main()
+function binInventoryChange()
   if entity.id() then
     local container = entity.id()
     local frames = entity.configParameter("binFrames", 9)

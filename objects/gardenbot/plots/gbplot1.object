@@ -12,6 +12,8 @@
   "glitchDescription" : "gardenbotplot",
   "humanDescription" : "gardenbotplot",
   "hylotlDescription" : "gardenbotplot",
+  
+  "x-hidden" : true,
 
   "scripts" : [ 
     "/objects/gardenbot/plots/gbplot.lua"
