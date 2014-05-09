@@ -34,13 +34,13 @@
 
     "scriptDelta" : 10,
     "gardenSettings" : {
-      "interactRange" : 3.0,
-      "searchDistance" : 40.0,
-      "wanderRange" : 40.0,
-      "plantDistance" : 8.0,
+      "interactRange" : 4.0,
+      "searchDistance" : 50.0,
+      "wanderRange" : 60.0,
+      "plantDistance" : 10.0,
       "cooldown" : 20.0,
       "returnTime" : 12.0,
-      "locateTime" : [3.0, 6.0],
+      "locateTime" : [6.0, 7.0],
       "harvestTime" : [1.0, 2.0],
       "plantTime" : [0.5, 1.0],
       "depositTime" : [0.2, 0.6],

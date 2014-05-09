@@ -26,6 +26,7 @@ function plantState.update(dt, stateData)
   local distance = world.magnitude(toTarget)
   --TODO put a delay time here
   if distance < entity.configParameter("gardenSettings.interactRange") then
+    entity.setFacingDirection(util.toDirection(toTarget[1]))
     entity.setAnimationState("movement", "work")
     if not stateData.located then
       stateData.located = true

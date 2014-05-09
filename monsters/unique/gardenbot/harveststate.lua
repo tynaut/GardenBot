@@ -44,6 +44,7 @@ function harvestState.farmUpdate(dt, stateData)
   local distance = world.magnitude(toTarget)
   if distance < entity.configParameter("gardenSettings.interactRange") then
     entity.setAnimationState("movement", "work")
+    entity.setFacingDirection(util.toDirection(toTarget[1]))
     if not stateData.located then
       stateData.located = true
       stateData.timer = entity.randomizeParameterRange("gardenSettings.harvestTime")
@@ -97,6 +98,7 @@ function harvestState.lumberUpdate(dt, stateData)
       stateData.timer = 0
     end
     if stateData.timer <= 0 then
+      entity.setFacingDirection(util.toDirection(toTarget[1]))
       entity.setAnimationState("attack", "melee")
       stateData.timer = entity.randomizeParameterRange("gardenSettings.harvestTime")
       world.damageTiles({stateData.targetPosition}, "foreground", position, "plantish", 2)

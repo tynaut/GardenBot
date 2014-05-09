@@ -14,9 +14,9 @@ function returnState.enterWith(args)
       end
       local toTarget = world.distance(hPos, position)
       local distance = world.magnitude(toTarget)
+      --if (type(args) == "table" and args.ignoreDistance) then world.logInfo("FORCED RETURN TO HOME") end
       if (type(args) == "table" and args.ignoreDistance) or distance > range then
         return {
-          position = position,
           targetPosition = hPos,
           timer = entity.configParameter("gardenSettings.returnTime", 5)
         }
@@ -31,7 +31,7 @@ function returnState.update(dt, stateData)
     return true,entity.configParameter("gardenSettings.cooldown", 15)
   end
   
-  local position = stateData.position
+  local position = entity.position()
   local toTarget = world.distance(stateData.targetPosition, position)
   local distance = world.magnitude(toTarget)
   if distance < 3 * entity.configParameter("gardenSettings.interactRange") then
@@ -40,7 +40,8 @@ function returnState.update(dt, stateData)
     entity.setAnimationState("movement", "idle")
   else
     if stateData.timer < 0 then
-      entity.setPosition(stateData.targetPosition)
+      local p = stateData.targetPosition
+      entity.setPosition({p[1], p[2] + 3})
       entity.setAnimationState("movement", "idle")
     else
       move({util.toDirection(toTarget[1]), toTarget[2]})

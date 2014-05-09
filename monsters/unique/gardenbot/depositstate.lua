@@ -29,6 +29,7 @@ function depositState.update(dt, stateData)
   local toTarget = world.distance(stateData.targetPosition, position)
   local distance = world.magnitude(toTarget)
   if distance < entity.configParameter("gardenSettings.interactRange") then
+    entity.setFacingDirection(util.toDirection(toTarget[1]))
     entity.setAnimationState("movement", "work")
     if not stateData.located then
       stateData.located = true
