@@ -1,9 +1,6 @@
 {
   "__merge" : [],
-  "animation" : "/objects/farmables/gardenbotfarmable.animation",
-  "animationParts" : {
-    "plant" : "kiwiseed.png"
-  },
+    
   "scripts" : [
 	"/objects/farmables/gardenbotfarmable.lua"
   ]

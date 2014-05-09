@@ -28,13 +28,6 @@ function init(args)
       self.harvest[v] = true
     end
   end
-  local compact = entity.configParameter("compactPlot")
-  if compact ~= nil then
-    self.compact = {}
-    for _,v in ipairs(compact) do
-      self.compact[v] = true
-    end
-  end
   self.searchDistance = entity.configParameter("gardenSettings.searchDistance")
 end
 
@@ -76,20 +69,20 @@ function canReachTarget(target, ignoreLOS)
   local fovHeight = entity.configParameter("gardenSettings.fovHeight")
   local min = nil
   local max = nil
+  ep[2] = math.ceil(ep[2] + 0.5)
   --Target to the left
   if ep[1] > position[1] then
-    min = {position[1]+1.1, ep[2] - fovHeight/2}
-    max = {ep[1]-1.1, ep[2] + fovHeight / 2}
+    min = {position[1]+1.1, ep[2] - (fovHeight/2)}
+    max = {ep[1]-1.1, ep[2] + (fovHeight/2)}
   --Target to the right
   else
-    min = {ep[1]+1.1, ep[2] - fovHeight/2}
-    max = {position[1]-1.1, ep[2] + fovHeight / 2}
+    min = {ep[1]+1.1, ep[2] - (fovHeight/2)}
+    max = {position[1]-1.1, ep[2] + (fovHeight/2)}
   end
 
   local oIds = world.objectQuery(min, max, { callScript = "entity.configParameter", callScriptArgs = {"category"}, callScriptResult = "gardenfence" })
   if oIds[1] ~= nil then
-    if ignoreLOS == true or entity.entityInSight(oIds[1]) then return false,world.entityPosition(oIds[1]) end
-    return false
+     return false,world.entityPosition(oIds[1])
   end
   return ignoreLOS == true or not collision
 end
@@ -420,7 +413,6 @@ function plantState.findTargetPosition(position)
         if seed ~= nil then
           --TODO seedMemory for plot size, default 2
           local d = plantState.plotSize(seed)
-          --if self.compact[seed] ~= nil then d = 1 end
           if world.placeObject("gardenbotplot" .. d, targetPosition) then
             return { position = targetPosition, seed = seed}
           end

@@ -41,14 +41,6 @@
         "titaniumore", "uraniumore", "money"
       ]
     },
-    
-    "compactPlot" : [
-        "beakseedseed", "boltbulbseed", "carrotseed", "currentcornseed", "eggshotseed",
-        "feathercrownseed", "kiwiseed", "potatoseed", "pussplumseed", "riceseed",
-        "beakseedseedadv", "boltbulbseedadv", "carrotseedadv", "currentcornseedadv", "eggshotseedadv",
-        "feathercrownseedadv", "kiwiseedadv", "potatoseedadv", "pussplumseedadv", "riceseedadv",
-        "talonseedseed"
-    ],
 
     "metaBoundBox" : [-1.0, -0.65, 1.0, 0.65],
     "scale" : 1.0,

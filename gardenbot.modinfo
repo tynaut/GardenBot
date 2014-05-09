@@ -6,6 +6,6 @@
   "metadata" : {
     "author" : "tynaut",
     "description" : "The automated gardening bot.",
-    "version" : "0.8"
+    "version" : "0.8.1"
   }
 }
