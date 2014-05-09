@@ -120,18 +120,20 @@ if inventoryManager == nil or inventoryManager.v == nil or inventoryManager.v < 
         elseif type(args) == "table" then
           local count = nil
           local name = nil
+          local data = nil
           if args.count ~= nil and type(args.count) == "number" then count = args.count end
           if args.name ~= nil and type(args.name) == "string" then name = args.name end
+          if args.data ~= nil then data = args.data end
           if args.all ~= nil and type(args.all) == "boolean" and args.all then
             --TODO expand on this to do all w/ match
               result = inv
               inv = {}
           elseif name ~= nil then
-            local i = self.indexOf(name)
+            local i = self.indexOf(args)
             if i ~= nil then
               if inv[i].count > count then
                 inv[i].count = inv[i].count - count
-                result = {{name = name, count = count }}
+                result = {{name = name, count = count, data = data }}
               else
                 local r = table.remove(inv, i)
                 result = {r}

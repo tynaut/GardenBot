@@ -38,7 +38,7 @@ function plantState.update(dt, stateData)
       if seed ~= nil then
         --TODO fail check to add to ignored seeds
         if world.placeObject(seed.name, stateData.targetPosition, 1, seed.data) then
-          if oId == nil then self.inv.remove({name = seed.name, count = 1}) end
+          if oId == nil then self.inv.remove({name = seed.name, count = 1, data = seed.data}) end
           plantState.addToMemory(seed.name, stateData.targetPosition)
         else
           local fp = stateData.targetPosition[1] .. "," .. stateData.targetPosition[2]

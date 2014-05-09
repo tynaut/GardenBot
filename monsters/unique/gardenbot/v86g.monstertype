@@ -49,7 +49,8 @@
       "fovHeight" : 4,
       "seed" : [ "sapling" ],
       "gatherables" : [ 
-        "fullwood1", "plantfibre", "sapling", "crystal", "icecrystal", "rainbowwood"
+        "fullwood1", "plantfibre", "sapling", "crystal", "icecrystal", "rainbowwood", "cacti",
+        "oculemon", "fleshstrand", "giantflowerpetal", "ice", "shroom", "metallic"
       ]
     },
 
